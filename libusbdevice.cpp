@@ -76,24 +76,26 @@ void LibUsbDevice::initializeDevice()
         return;
     }
     isInitialiazed = true;
-    if(libusb_has_capability (LIBUSB_CAP_HAS_HOTPLUG)&&0)
+#if 0
+    if(libusb_has_capability (LIBUSB_CAP_HAS_HOTPLUG))
     {
        hasHotPlugSupport = true;
-       //status = libusb_hotplug_register_callback (context, LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED, LIBUSB_HOTPLUG_ENUMERATE , VENDOR_ID,
-                                              //  PRODUCT_ID, CLASS_ID, hotplugAttachCallback, this, &hotplugHandle[0]);
+       status = libusb_hotplug_register_callback (context, LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED, LIBUSB_HOTPLUG_ENUMERATE , VENDOR_ID,
+                                                  PRODUCT_ID, CLASS_ID, hotplugAttachCallback, this, &hotplugHandle[0]);
        if (LIBUSB_SUCCESS != status)
        {
            hasHotPlugSupport = false;
        }
 
-       //status = libusb_hotplug_register_callback (context, LIBUSB_HOTPLUG_EVENT_DEVICE_LEFT, LIBUSB_HOTPLUG_ENUMERATE , VENDOR_ID,
-                                                 // PRODUCT_ID, CLASS_ID, hotplugDetachCallback, this, &hotplugHandle[1]);
+       status = libusb_hotplug_register_callback (context, LIBUSB_HOTPLUG_EVENT_DEVICE_LEFT, LIBUSB_HOTPLUG_ENUMERATE , VENDOR_ID,
+                                                 PRODUCT_ID, CLASS_ID, hotplugDetachCallback, this, &hotplugHandle[1]);
        if (LIBUSB_SUCCESS != status)
        {
            hasHotPlugSupport = false;
        }
        future = QtConcurrent::run (this,&LibUsbDevice::eventThread);
     }
+#endif
     libusb_set_debug(context, LIBUSB_LOG_LEVEL_INFO); //set verbosity level to 3
 }
 

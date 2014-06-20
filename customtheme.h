@@ -16,8 +16,8 @@ class CustomColors
 {
 public:
     QColor ch1, ch1ref, ch2, ch2ref, ch1fft, ch2fft;
-    QColor bit[7];
-    QColor bitref[7];
+    QColor bit[8];
+    QColor bitref[8];
     QColor axes, grid, label;
     QBrush background;
 
@@ -26,7 +26,7 @@ public:
 class CustomTheme : public QDialog
 {
     Q_OBJECT
-    
+
 public:
     explicit CustomTheme(QWidget *parent = 0);
     ~CustomTheme();
@@ -35,7 +35,7 @@ public:
     void loadDefaultTheme();
     void colorizeButtons();
     QString idealForegroundColor(QColor);
-    
+
 private slots:
     void on_applyButton_clicked();
 

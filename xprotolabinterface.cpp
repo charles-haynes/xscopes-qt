@@ -1145,7 +1145,6 @@ void XprotolabInterface::plotData()
         unit = unit.replace("/div","");
         unit = unit.replace('u', QChar(0xB5));//QString::fromUtf8("μ"));
         deltaTime = deltaTime*value/32;
-        deltaTime = deltaTime;
         freq = 1/deltaTime;
         textLabelDeltaTime->setVisible(true);
         textLabelFrequency->setVisible(true);
@@ -4151,7 +4150,7 @@ void XprotolabInterface::on_comboBoxTheme_activated(int theme)
         setTheme(theme);
 }
 
-void XprotolabInterface::on_chdSizeSlider_valueChanged(int value)
+void XprotolabInterface::on_chdSizeSlider_valueChanged(int)
 {
 
 }
